@@ -1,24 +1,33 @@
 package ie.gmit.sw;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.util.Scanner;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import ie.gmit.sw.UI;
+import ie.gmit.sw.FileParser;
 
 public class Runner {
 	public static void main(String[] args) {
-		// Project Header
-		System.out.println("---------------------------------------------------------");
-		System.out.println("     A Java API for Measuring Document Similarity");
-		System.out.println("G00338592 - Conor O'Reilly - Software Development Year 3");
-		System.out.println("----------------------------------------------------------");
-
-		// Scanner and BufferedReader to read file names
-		FileInputStream fileInputStream = null;
-		Scanner scanner = new Scanner(System.in);
-		BufferedReader bufferedReader = null;
-
-		// Variables
-
-		// Menu
+		UI ui = new UI();
+		ui.show();
+		int shingleSize = 100;
+		
+		BlockingQueue<Shingle> queue = new LinkedBlockingQueue<>();
+		
+		Thread t1 = new Thread(new FileParser(queue, ui.getFile1(), shingleSize()),"A");
+		Thread t2 = new Thread(new FileParser(queue, ui.getFile2(), shingleSize()),"B");
+		
+		t1.start();
+		t2.start();
 	}
+
+	private static int shingleSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 }
+
+/*Thread t1 = new Thread (new FileParser) (queue, fileName), "B"),
+t1.start();*/

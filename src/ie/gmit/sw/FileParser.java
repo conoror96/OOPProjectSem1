@@ -17,6 +17,7 @@ public class FileParser implements Runnable {
 	
 	
 	public FileParser(BlockingQueue<Shingle> queue, String filename, int shingleSize){
+		super();
 		this.queue = queue;
 		this.fileName = fileName;
 		this.shingleSize = shingleSize;
@@ -27,11 +28,12 @@ public void parse() throws Exception {
 	BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
 	String line = null;
 	while((line = br.readLine()) !=null){
+		if(line.length()> 0) { //skip over blank lines
 		String lineLower = line.toLowerCase();
 		String[] words = lineLower.split("\\s+"); //strip char + convert to lowercase
 		Shingle s = getShingle(words); //the mystery getShignle method
 		queue.put(s); //blocking call
-		
+		}
 	}
 	br.close();
 }
@@ -47,5 +49,4 @@ public void run() {
 }
 }
 
-  /*Thread t1 = new Thread (new FileParser) (queue, fileName), "B"),
-  t1.start();*/
+ 
