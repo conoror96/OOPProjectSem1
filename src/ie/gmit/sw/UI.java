@@ -25,9 +25,9 @@ public class UI {
 		String menu = "Press 1 to start similarity check\nPress 2 to exit";
 		option = getInputInt(menu);
 		if (option == 1) {
-			this.file1 = getInputString("Enter File 1");
-			this.file2 = getInputString("Enter File 2");
-			//this.shingleSize = getInputInt("Enter Shingle Size :");
+			this.file1 = getInputString("Enter File 1 ");
+			this.file2 = getInputString("Enter File 2 ");
+			this.shingleSize = getInputInt("Enter Shingle Size ");
 			System.out.println("| file1 = " + this.file1 + " | file2 = " + file2 + " | Shingle Size = " + shingleSize);
 		}
 		// }while(option!=2);
@@ -53,13 +53,14 @@ public class UI {
 		this.file2 = file2;
 	}
 
-	/*public int getShingleSize() {
+	public int getShingleSize() {
+		// TODO Auto-generated method stub
 		return shingleSize;
 	}
 
 	public void setShingleSize(int shingleSize) {
 		this.shingleSize = shingleSize;
-	}*/
+	}
 	///////////////////////////////////////////////////
 	// take in the file names
 	public static String getInputString(String input) {
@@ -90,5 +91,7 @@ public class UI {
 
 		return fileName;
 	}
+
+
 
 }

@@ -18,9 +18,11 @@ public class FileParser implements Runnable {
 	
 	public FileParser(BlockingQueue<Shingle> queue, String filename, int shingleSize){
 		super();
+		this.documentId = documentId;
 		this.queue = queue;
 		this.fileName = fileName;
 		this.shingleSize = shingleSize;
+		this.k = k;
 	}
 
 
@@ -31,7 +33,7 @@ public void parse() throws Exception {
 		if(line.length()> 0) { //skip over blank lines
 		String lineLower = line.toLowerCase();
 		String[] words = lineLower.split("\\s+"); //strip char + convert to lowercase
-		Shingle s = getShingle(words); //the mystery getShignle method
+		Shingle s = getNextShingle(); //the mystery getShignle method
 		queue.put(s); //blocking call
 		}
 	}
@@ -78,15 +80,6 @@ private void flushbuffer() throws InterruptedException{
 
 
 
-
-
-
-
-private Shingle getShingle(String[] words) {
-	// TODO Auto-generated method stub
-	return null;
-	
-}
 @Override
 public void run() {
 	// TODO Auto-generated method stub

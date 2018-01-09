@@ -1,5 +1,6 @@
 package ie.gmit.sw;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,35 +35,44 @@ public class Consumer implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		int docCount = 2; // FIX THIS
-		while(docCount > 0) {
-			Shingle s = queue.take(); // Blocking method
-			if(s instanceof Poison) {
-				docCount--;
+		try {
+			int docCount = 2;
+			while (docCount > 0) {
+				Shingle s = queue.take();
+				if (s instanceof Poison) {
+					docCount--;
+				} else {
+					pool.execute(new Runnable() {
+						@Override
+						public void run() {
+							for (int i = 0; i < minhashes.length; i++) {
+								int value = s.getShingleHashCode() ^ minhashes[i]; // ^ - xor(Random generated key)
+								List<Integer> list = map.get(s.getDocumentId());
+								if (list == null) {
+									list = new ArrayList<Integer>(k);
+									for (int j = 0; j <minhashes.length; j++) {
+										list.add(Integer.MAX_VALUE);
+										System.out.println(s.getDocumentId()+"  -----   "+value);
+									}
+									map.put(s.getDocumentId(), list);
+
+								} else {
+									if (list.get(i) > value) {
+										list.set(i, value);
+
+									}
+								}
+							}
+						}
+					});
+
+				}
 			}
-			else {
-				pool.execute(new Runnable() {
-					for(int i = 0; i < minhashes.length; i++) {
-						int value = s.getHashCode()^minhashes[i]; // ^ - xor(Random generated key)
-						List<Integer> list = map.get(s.getDocId());
-						if(list == null) {					// Happens once for each document
-							list = new ArrayList<Integer>(k); // k - size   //
-							for (int j =0; j < list.length; j++) {		//
-								list.set(j > Integer.MAX_VALUE);	//
-							}						//
-							map.pool(s.getDocId(), list0);			//
-						}
-						else {
-							if(list.get(i) > value) {
-								list.set(i, value);
-							}	
-						}
-					}// For
-				}//Execute
-			}// Else
-		}// While
-	}//run
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+	}
 
-}//consumer
+}
