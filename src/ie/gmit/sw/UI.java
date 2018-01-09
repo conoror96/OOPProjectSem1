@@ -28,7 +28,7 @@ public class UI {
 			this.file1 = getInputString("Enter File 1");
 			this.file2 = getInputString("Enter File 2");
 			//this.shingleSize = getInputInt("Enter Shingle Size :");
-			System.out.println("file1" + this.file1 + "file2" + file2 + "Shingle Size = " + shingleSize);
+			System.out.println("| file1 = " + this.file1 + " | file2 = " + file2 + " | Shingle Size = " + shingleSize);
 		}
 		// }while(option!=2);
 
@@ -61,6 +61,7 @@ public class UI {
 		this.shingleSize = shingleSize;
 	}*/
 	///////////////////////////////////////////////////
+	// take in the file names
 	public static String getInputString(String input) {
 		Scanner scanner = new Scanner(System.in);
 		String output = "";
@@ -69,7 +70,7 @@ public class UI {
 		output = setFileName(scanner.next());
 		return output;
 	}
-
+	// take in the int for menu choice
 	public static int getInputInt(String input) {
 		Scanner scanner = new Scanner(System.in);
 		int output;
@@ -79,10 +80,15 @@ public class UI {
 
 		return output;
 	}// getStringInput
-
+	// add the .txt extension if not there already
 	private static String setFileName(String fileName) {
 		// TODO Auto-generated method stub
-		return null;
+		String txt = ".txt";
+		if (!fileName.contains(txt)) {
+			return fileName + txt;
+		}
+
+		return fileName;
 	}
 
 }

@@ -35,8 +35,53 @@ public void parse() throws Exception {
 		queue.put(s); //blocking call
 		}
 	}
+	flushbuffer();
 	br.close();
 }
+
+// add words to buffer
+private void addWordsTobuffer(String [] words){
+	for(String s : words) {
+		buffer.add(s);
+	}
+}
+
+private Shingle getNextShingle() {
+	StringBuffer sb = new StringBuffer();
+	int counter = 0;
+	while(counter < shingleSize) {
+		if(((LinkedList<String>) buffer).peek() != null) {
+			sb.append(((LinkedList<String>) buffer).poll());
+			counter++;
+		}
+	}
+	if (sb.length() > 0) {
+		return(new Shingle(documentId, sb.toString().hashCode()));
+	}
+	else {
+		return(null);
+	}
+}// next shingle
+
+private void flushbuffer() throws InterruptedException{
+	while(buffer.size() > 0) {
+		Shingle s = getNextShingle();
+		if(s != null) {
+			queue.put(s);
+		}
+		else {
+			queue.put(new Poison(documentId, 0));
+		}
+	}
+}
+
+
+
+
+
+
+
+
 private Shingle getShingle(String[] words) {
 	// TODO Auto-generated method stub
 	return null;
@@ -47,6 +92,7 @@ public void run() {
 	// TODO Auto-generated method stub
 	
 }
+
 }
 
  

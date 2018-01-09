@@ -8,9 +8,9 @@ import ie.gmit.sw.FileParser;
 
 public class Runner {
 	public static void main(String[] args) {
-		UI ui = new UI();
-		ui.show();
-		int shingleSize = 100;
+		UI ui = new UI(); // create new user interface
+		ui.show(); //
+		int shingleSize = 100; 
 		
 		BlockingQueue<Shingle> queue = new LinkedBlockingQueue<>();
 		
