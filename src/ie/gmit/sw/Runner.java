@@ -7,18 +7,21 @@ import ie.gmit.sw.UI;
 import ie.gmit.sw.FileParser;
 
 public class Runner {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		UI ui = new UI(); // create new user interface
 		ui.show(); //
-		int shingleSize = 100; 
+		//int shingleSize = 100; 
 		
 		BlockingQueue<Shingle> queue = new LinkedBlockingQueue<>();
 		
-		Thread t1 = new Thread(new FileParser(queue, ui.getFile1(), shingleSize()),"A");
-		Thread t2 = new Thread(new FileParser(queue, ui.getFile2(), shingleSize()),"B");
-		
+		Thread t1 = new Thread(new FileParser(queue, ui.getFile1(), shingleSize()),"T1");
+		Thread t2 = new Thread(new FileParser(queue, ui.getFile2(), shingleSize()),"T2");
+		//t3 for consumer
 		t1.start();
 		t2.start();
+		
+		t1.join();
+		t2.join();
 	}
 
 	private static int shingleSize() {
