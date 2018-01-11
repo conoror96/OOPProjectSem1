@@ -2,8 +2,6 @@ package ie.gmit.sw;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,34 +23,21 @@ public class FileParser implements Runnable {
 		this.k = k;
 	}
 
-	public void run() {
-
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
-			String line = null;
-			while ((line = br.readLine()) != null) {
-				if (line.length() > 0) { // skip over blank lines
-					String lineLower = line.toLowerCase();
-					String[] words = lineLower.split("\\s+"); // strip char +
-																// convert to
-																// lowercase
-					Shingle s = getNextShingle(); // the mystery getShignle
-													// method
-					queue.put(s); // blocking call
-				}
+	public void parse() throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			if (line.length() > 0) { // skip over blank lines
+				String lineLower = line.toLowerCase();
+				String[] words = lineLower.split("\\s+"); // strip char +
+															// convert to
+															// lowercase
+				Shingle s = getNextShingle(); // the mystery getShignle method
+				queue.put(s); // blocking call
 			}
-			flushbuffer();
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		flushbuffer();
+		br.close();
 	}
 
 	// add words to buffer
@@ -89,10 +74,10 @@ public class FileParser implements Runnable {
 		}
 	}
 
-	/*
-	 * @Override public void run() { // TODO Auto-generated method stub
-	 * 
-	 * }
-	 */
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
 
 }
