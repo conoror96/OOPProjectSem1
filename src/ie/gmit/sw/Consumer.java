@@ -16,23 +16,15 @@ public class Consumer implements Runnable {
 	private Map<Integer, List<Integer>> map; // = new HashMap<>()
 	// private ExecutorService pool;
 
-	public Consumer(BlockingQueue<Shingle> q, int k, int[] hashes) {
+	public Consumer(BlockingQueue<Shingle> q, int k, int[] hashes, Map<Integer, List<Integer>> map) {
 		this.queue = q;
 		this.k = k;
 		this.map = map;
 		this.minhashes = hashes;
 		// pool = Executors.newFixedThreadPool(poolSize);
 		// ThreadPoolExecutor executor = (ThreadPoolExecutor)
-		// Executors.newFixedThreadPool(4); ---
-		// https://howtodoinjava.com/core-java/multi-threading/java-fixed-size-thread-pool-executor-example/
-		// init();
 	}
 
-	/*
-	 * private void init() { // TODO Auto-generated method stub Random random =
-	 * new Random(); minhashes = new int[k]; // k = 200 - 300 for (int i = 0; i
-	 * < minhashes.length; i++) { minhashes[i] = random.nextInt(0); } }
-	 */
 
 	@Override
 	public void run() {

@@ -24,11 +24,28 @@ public class Runner {
 		int k = 0;
 		Thread t1 = new Thread(new FileParser(q1, ui.getFile1(),k, ui.getShingleSize()),"T1");
 		Thread t2 = new Thread(new FileParser(q2, ui.getFile2(),k, ui.getShingleSize()),"T2");
-		//t3 for consumer
-		//Thread t3 = new Thread(new Consumer(queue,200,10), "T3");
+		
 		t1.start();
 		t2.start();
 		
+		//t3/t4 for consumer
+		/*Thread t3 = new Thread(new Consumer(q1,m1,k), "T3");
+		Thread t4 = new Thread(new Consumer(q2,m2,k), "T4");
+		
+		t3.start();
+		t4.start();
+		
+		t1.join();
+		t2.join();
+		//t3.join();
+		
+		t3.join();
+		t3.join();*/
+		
+		//outprint final results
+		System.out.println("---------------------------------");
+		System.out.println("Documents are " + "" + "% Similar");
+		System.out.println("---------------------------------");
 		
 	}
 
