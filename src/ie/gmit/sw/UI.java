@@ -19,9 +19,11 @@ public class UI {
 		System.out.println("G00338592 - Conor O'Reilly - Software Development Year 3");
 		System.out.println("----------------------------------------------------------");
 
-		//do{
-		/*System.out.println("Press 1 to start similarity check");
-		System.out.println("Press 2 to exit");*/
+		// do{
+		/*
+		 * System.out.println("Press 1 to start similarity check");
+		 * System.out.println("Press 2 to exit");
+		 */
 		String menu = "Press 1 to start similarity check\nPress 2 to exit";
 		option = getInputInt(menu);
 		if (option == 1) {
@@ -61,6 +63,7 @@ public class UI {
 	public void setShingleSize(int shingleSize) {
 		this.shingleSize = shingleSize;
 	}
+
 	///////////////////////////////////////////////////
 	// take in the file names
 	public static String getInputString(String input) {
@@ -71,6 +74,7 @@ public class UI {
 		output = setFileName(scanner.next());
 		return output;
 	}
+
 	// take in the int for menu choice
 	public static int getInputInt(String input) {
 		Scanner scanner = new Scanner(System.in);
@@ -81,7 +85,8 @@ public class UI {
 
 		return output;
 	}// getStringInput
-	// add the .txt extension if not there already
+		// add the .txt extension if not there already
+
 	private static String setFileName(String fileName) {
 		// TODO Auto-generated method stub
 		String txt = ".txt";
@@ -91,7 +96,5 @@ public class UI {
 
 		return fileName;
 	}
-
-
 
 }
