@@ -26,41 +26,30 @@ public class FileParser implements Runnable {
 	}
 
 	public void run() {
-		BufferedReader br = null;
+
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String line = null;
-		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+			String line = null;
 			while ((line = br.readLine()) != null) {
 				if (line.length() > 0) { // skip over blank lines
 					String lineLower = line.toLowerCase();
 					String[] words = lineLower.split("\\s+"); // strip char +
 																// convert to
 																// lowercase
-					Shingle s = getNextShingle(); // the mystery getShignle method
+					Shingle s = getNextShingle(); // the mystery getShignle
+													// method
 					queue.put(s); // blocking call
 				}
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			flushbuffer();
-		} catch (InterruptedException e) {
+			br.close();
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		try {
-			br.close();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -100,10 +89,10 @@ public class FileParser implements Runnable {
 		}
 	}
 
-	/*@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-	}*/
+	/*
+	 * @Override public void run() { // TODO Auto-generated method stub
+	 * 
+	 * }
+	 */
 
 }
