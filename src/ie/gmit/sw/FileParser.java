@@ -14,7 +14,7 @@ public class FileParser implements Runnable {
 	private int documentId;
 	private int shingleSize, k;
 
-	public FileParser(BlockingQueue<Shingle> queue, String filename, int shingleSize) {
+	public FileParser(BlockingQueue<Shingle> queue, String fileName, int shingleSize) {
 		super();
 		this.documentId = documentId;
 		this.queue = queue;

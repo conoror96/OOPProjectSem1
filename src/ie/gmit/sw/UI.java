@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UI {
 	private String file1;
 	private String file2;
-	private int shingleSize = 100;
+	private int shingleSize;
 	private int option;
 
 	public UI() {
@@ -30,7 +30,7 @@ public class UI {
 			this.file1 = getInputString("Enter File 1 ");
 			this.file2 = getInputString("Enter File 2 ");
 			this.shingleSize = getInputInt("Enter Shingle Size ");
-			System.out.println("| file1 = " + this.file1 + " | file2 = " + file2 + " | Shingle Size = " + shingleSize);
+			System.out.println("| file1 = " + file1 + " | file2 = " + file2 + " | Shingle Size = " + shingleSize);
 		}
 		// }while(option!=2);
 

@@ -66,13 +66,13 @@ public class Consumer implements Runnable {
 									if (list.get(i) > value) {
 										list.set(i, value);
 
-									}
-								}
-							}
-						}
+									}//if
+								}//else
+							}//for
+						}//run
 					});
 
-				}
+				}//else
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
