@@ -6,3 +6,15 @@ computing their Jaccard Index. The API should uphold the principles of loose-cou
 high cohesion throughout its design by correctly applying abstraction, encapsulation,
 composition and inheritance.
 
+2. Contents
+ - Source Files:
+	-Runner
+	-UI
+	-FileParser
+	-Consumer
+	-Shingle
+	-Poison
+	
+ - JavaDocs
+ 
+ - UML Diagram 
