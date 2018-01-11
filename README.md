@@ -7,12 +7,12 @@ high cohesion throughout its design by correctly applying abstraction, encapsula
 composition and inheritance.
 
 2. Contents
- - Source Files:
-	-Runner
-	-UI
-	-FileParser
-	-Consumer
-	-Shingle
+ - Source Files:<br />
+	-Runner<br />
+	-UI<br />
+	-FileParser<br />
+	-Consumer<br />
+	-Shingle<br />
 	-Poison
 	
  - JavaDocs
