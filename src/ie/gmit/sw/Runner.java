@@ -54,3 +54,11 @@ public class Runner {
 
 /*Thread t1 = new Thread (new FileParser) (queue, fileName), "B"),
 t1.start();*/
+
+
+/*
+List<Integer> intersection = new ArrayList(a);
+intersection.retainAll(b);
+
+float jaccard = ((float)intersection.size()) / ((k*2) + ((float)intersection.size()));
+*/
