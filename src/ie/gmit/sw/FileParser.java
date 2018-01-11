@@ -14,7 +14,7 @@ public class FileParser implements Runnable {
 	private int documentId;
 	private int shingleSize, k;
 
-	public FileParser(BlockingQueue<Shingle> queue, String fileName, int shingleSize) {
+	public FileParser(BlockingQueue<Shingle> queue, String fileName, int k, int shingleSize) {
 		super();
 		this.documentId = documentId;
 		this.queue = queue;
@@ -22,6 +22,8 @@ public class FileParser implements Runnable {
 		this.shingleSize = shingleSize;
 		this.k = k;
 	}
+
+	
 
 	public void parse() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
